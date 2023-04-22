@@ -3,7 +3,7 @@ import { TouchableHighlight, View, TextInput, Text, StyleSheet } from "react-nat
 export const SearchBar = ({
     searchText,
     setSearchText,
-    setLocation
+    onSearch
 }) => {
 
     return (
@@ -15,7 +15,7 @@ export const SearchBar = ({
                         value={searchText}
                         onChangeText={setSearchText} />
             </View>
-            <TouchableHighlight onPress={() => setLocation(searchText)}
+            <TouchableHighlight onPress={() => onSearch(searchText)}
                                 style={styles.button}>
                 <Text>Search</Text>
             </TouchableHighlight>

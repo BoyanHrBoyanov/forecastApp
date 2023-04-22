@@ -4,24 +4,32 @@ import { StyleSheet, Text, View } from 'react-native';
 import { SearchBar } from "./src/components/SearchBar/SearchBar";
 
 import { locationHandler } from "./src/handlers/locationHandler";
+import { LocationButton } from "./src/components/LocationButton/LocationButton";
 
 
 export default function App() {
     const [searchText, setSearchText] = useState('');
-    const [location, setLocation] = useState('');
     const [modifiedLocations, setModifiedLocations] = useState([]);
 
-    useEffect(() => {
-        const searchQuery = location.toLowerCase().split(' ').join('+');
+    function onSearch(searchText) {
+        const searchQuery = searchText.toLowerCase().split(' ').join('+');
         locationHandler(searchQuery, setModifiedLocations);
-        console.log(modifiedLocations);
-    }, [location])
+    }
+
+    function onChooseLocation(location) {
+        console.log(location);
+    }
 
     return (
         <View style={styles.container}>
             <SearchBar searchText={searchText}
                 setSearchText={setSearchText}
-                setLocation={setLocation} ></SearchBar>
+                onSearch={onSearch} ></SearchBar>
+            {modifiedLocations.map(l =>
+                <LocationButton 
+                    key={l.i} 
+                    location={l}
+                    onChooseLocation={onChooseLocation} />)}
         </View>
     );
 }
@@ -29,8 +37,6 @@ export default function App() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
-        // alignItems: 'center',
-        // justifyContent: 'center',
+        backgroundColor: '#fff'
     },
 });
