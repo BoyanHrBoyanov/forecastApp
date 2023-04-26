@@ -1,23 +1,27 @@
 import { TouchableHighlight, View, TextInput, Text, StyleSheet } from "react-native";
 
+import { langBG } from "../../lang/bg";
+import { langEN } from "../../lang/en";
+
 export const SearchBar = ({
     searchText,
     setSearchText,
-    onSearch
+    onSearch,
+    langPicker
 }) => {
 
     return (
         <View style={styles.searchContainer}>
             <View style={styles.searchInputContainer}>
                 <TextInput type="text" 
-                        placeholder="Search location" 
+                        placeholder={langPicker().searchLocation} 
                         style={styles.searchInput}
                         value={searchText}
                         onChangeText={setSearchText} />
             </View>
             <TouchableHighlight onPress={() => onSearch(searchText)}
                                 style={styles.button}>
-                <Text>Search</Text>
+                <Text>{langPicker().search}</Text>
             </TouchableHighlight>
 
         </View>

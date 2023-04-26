@@ -10,14 +10,16 @@ export const Home = ({
     setSearchText,
     onSearch,
     modifiedLocations,
-    onChooseLocation
+    onChooseLocation,
+    langPicker
 }) => {
     return (
         <>
             <View style={styles.container}>
                 <SearchBar searchText={searchText}
                     setSearchText={setSearchText}
-                    onSearch={onSearch} ></SearchBar>
+                    onSearch={onSearch}
+                    langPicker={langPicker} ></SearchBar>
                 {modifiedLocations.map(l =>
                     <LocationButton
                         key={l.i}
