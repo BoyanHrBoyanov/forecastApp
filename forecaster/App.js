@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
+import { NativeRouter, Routes, Route } from "react-router-native";
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import { SearchBar } from "./src/components/SearchBar/SearchBar";
 
 import { locationHandler } from "./src/handlers/locationHandler";
-import { LocationButton } from "./src/components/LocationButton/LocationButton";
-
+import { Home } from "./src/components/Home/Home";
+import { FlatListBasics } from "./src/components/Test/FlatList";
 
 export default function App() {
     const [searchText, setSearchText] = useState('');
@@ -21,22 +20,19 @@ export default function App() {
     }
 
     return (
-        <View style={styles.container}>
-            <SearchBar searchText={searchText}
-                setSearchText={setSearchText}
-                onSearch={onSearch} ></SearchBar>
-            {modifiedLocations.map(l =>
-                <LocationButton 
-                    key={l.i} 
-                    location={l}
-                    onChooseLocation={onChooseLocation} />)}
-        </View>
+        <NativeRouter>
+            <Routes>
+                <Route path="/" element={
+                    <Home searchText={searchText}
+                        setSearchText={setSearchText}
+                        onSearch={onSearch}
+                        modifiedLocations={modifiedLocations}
+                        onChooseLocation={onChooseLocation} />
+                } />
+                <Route path="/else" element={<FlatListBasics />} />
+            </Routes>
+        </NativeRouter>
     );
 }
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff'
-    },
-});
+

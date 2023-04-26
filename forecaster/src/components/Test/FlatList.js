@@ -1,4 +1,5 @@
-import { FlatList, StyleSheet, View, Text } from "react-native";
+import { FlatList, StyleSheet, View, Text, TouchableHighlight } from "react-native";
+import { Link } from 'react-router-native';
 
 
 const styles = StyleSheet.create({
@@ -49,6 +50,11 @@ export const FlatListBasics = () => {
                     </Text>
                 }
             />
+            <TouchableHighlight>
+                <Link to="/">
+                    <Text>Go Back</Text>
+                </Link>
+            </TouchableHighlight>
         </View>
     );
 }
