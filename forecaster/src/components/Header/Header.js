@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 
 export const Header = ({
@@ -13,9 +13,9 @@ export const Header = ({
 
     return(
         <View style={styles.header}>
-            <TouchableHighlight onPress={changeLang}>
+            <TouchableOpacity onPress={changeLang} style={styles.button}>
                 <Text>{lang}</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
         </View>
     );
 }
@@ -26,4 +26,13 @@ const styles = StyleSheet.create({
         marginLeft: 20,
         backgroundColor: '#fff'
     },
+    button: {
+        width: 40,
+        height: 40,
+        backgroundColor: 'oldlace',
+        // alignSelf: 'flex-start',
+        // textAlign: 'center',
+        paddingHorizontal: 10,
+        paddingVertical: 10,    
+    }
 });

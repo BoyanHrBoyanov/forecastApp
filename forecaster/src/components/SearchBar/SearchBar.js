@@ -1,4 +1,4 @@
-import { TouchableHighlight, View, TextInput, Text, StyleSheet } from "react-native";
+import { TouchableOpacity, View, TextInput, Text, StyleSheet } from "react-native";
 
 import { langBG } from "../../lang/bg";
 import { langEN } from "../../lang/en";
@@ -19,11 +19,10 @@ export const SearchBar = ({
                         value={searchText}
                         onChangeText={setSearchText} />
             </View>
-            <TouchableHighlight onPress={() => onSearch(searchText)}
+            <TouchableOpacity onPress={() => onSearch(searchText)}
                                 style={styles.button}>
                 <Text>{langPicker().search}</Text>
-            </TouchableHighlight>
-
+            </TouchableOpacity>
         </View>
     );
 }
@@ -31,8 +30,9 @@ export const SearchBar = ({
 const styles = StyleSheet.create({
     searchContainer: {
         flexDirection: 'row',
-        marginTop: 15,
-        padding: 10,
+        // alignContent: 'center',
+        marginBottom: 5,
+        padding: 7,
         width: '100%',
         // backgroundColor: 'yellow'
     },
@@ -43,10 +43,12 @@ const styles = StyleSheet.create({
         borderColor: '#F0F0F1'
     },
     searchInput: {
-        textAlign: 'center'
+        textAlign: 'center',
+        paddingVertical: 15,
+        fontSize: 18
     },
     button: {
-        alignItems: 'center',
+        // alignItems: 'center',
         backgroundColor: '#DDDDDD',
         padding: 10,
         margin: 10
