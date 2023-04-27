@@ -1,7 +1,8 @@
 import { paths } from "../constants/paths";
 
 
-export function locationHandler(searchQuery, setModifiedLocations) {
+export function locationHandler(searchQuery, setModifiedLocations, setLoading) {
+    setLoading(true);
     fetch(paths.location(searchQuery))
         .then(response => response.json())
         .then(data => {
@@ -14,6 +15,10 @@ export function locationHandler(searchQuery, setModifiedLocations) {
                 i: i++
             }));
             setModifiedLocations(modifiedData);
+            setLoading(false);
         })
-        .catch(error => console.log(error));
+        .catch(error => {
+            setLoading(false);
+            console.log(error)
+        });
 }

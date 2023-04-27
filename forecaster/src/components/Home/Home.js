@@ -10,14 +10,17 @@ export const Home = ({
     langPicker
 }) => {
     const [modifiedLocations, setModifiedLocations] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     return (
         <>
             <View style={styles.container}>
                 <SearchBar setModifiedLocations={setModifiedLocations}
-                langPicker={langPicker} ></SearchBar>
+                            langPicker={langPicker} 
+                            setLoading={setLoading} />
                 {modifiedLocations && 
-                    <LocationsList locations={modifiedLocations} />}
+                    <LocationsList locations={modifiedLocations}
+                                    loading={loading} />}
             </View>
             <View>
                 <Link to="/else">

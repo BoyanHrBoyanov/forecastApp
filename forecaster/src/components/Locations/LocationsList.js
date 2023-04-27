@@ -1,19 +1,24 @@
-import { FlatList, StyleSheet, View } from "react-native";
+import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
 
 import { LocationButton } from "./LocationButton";
 
 
 export const LocationsList = ({
-    locations
+    locations,
+    loading
 }) => {
+    //about the FlatList
+    //
+    //progressViewOffset
+    //Set this when offset is needed for the loading indicator to show correctly.
     return (
         <View style={styles.listContainer}>
-            <FlatList data={locations}
+            {loading && <ActivityIndicator size='large' />}
+            {locations && <FlatList data={locations}
                         renderItem={({ item }) => 
                             <LocationButton
                                 location={item} />}
-                            >
-            </FlatList>
+                            />}
         </View>
     );
 }

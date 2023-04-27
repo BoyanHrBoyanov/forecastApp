@@ -5,13 +5,14 @@ import { locationHandler } from '../../handlers/locationHandler'
 
 export const SearchBar = ({
     setModifiedLocations,
-    langPicker
+    langPicker,
+    setLoading
 }) => {
     const [searchText, setSearchText] = useState('');
 
     function onSearch() {
         const searchQuery = searchText.toLowerCase().split(' ').join('+');
-        locationHandler(searchQuery, setModifiedLocations);
+        locationHandler(searchQuery, setModifiedLocations, setLoading);
     }
 
     return (
