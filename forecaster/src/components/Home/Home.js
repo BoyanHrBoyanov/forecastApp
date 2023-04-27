@@ -1,24 +1,21 @@
+import { useState } from 'react';
+
 import { StyleSheet, Text, View, Button } from 'react-native';
-import { Link, Route } from 'react-router-native';
+import { Link } from 'react-router-native';
 
 import { SearchBar } from "../SearchBar/SearchBar";
 import { LocationsList } from "../Locations/LocationsList";
-import { FlatListBasics } from '../Test/FlatList';
 
 export const Home = ({
-    searchText,
-    setSearchText,
-    onSearch,
-    modifiedLocations,
     langPicker
 }) => {
+    const [modifiedLocations, setModifiedLocations] = useState([]);
+
     return (
         <>
             <View style={styles.container}>
-                <SearchBar searchText={searchText}
-                    setSearchText={setSearchText}
-                    onSearch={onSearch}
-                    langPicker={langPicker} ></SearchBar>
+                <SearchBar setModifiedLocations={setModifiedLocations}
+                langPicker={langPicker} ></SearchBar>
                 {modifiedLocations && 
                     <LocationsList locations={modifiedLocations} />}
             </View>

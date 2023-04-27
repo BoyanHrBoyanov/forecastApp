@@ -1,11 +1,18 @@
+import { useState } from "react";
 import { TouchableOpacity, View, TextInput, Text, StyleSheet } from "react-native";
 
+import { locationHandler } from '../../handlers/locationHandler'
+
 export const SearchBar = ({
-    searchText,
-    setSearchText,
-    onSearch,
+    setModifiedLocations,
     langPicker
 }) => {
+    const [searchText, setSearchText] = useState('');
+
+    function onSearch() {
+        const searchQuery = searchText.toLowerCase().split(' ').join('+');
+        locationHandler(searchQuery, setModifiedLocations);
+    }
 
     return (
         <View style={styles.searchContainer}>
