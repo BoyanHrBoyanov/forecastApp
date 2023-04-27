@@ -4,16 +4,14 @@ import { LocationButton } from "./LocationButton";
 
 
 export const LocationsList = ({
-    locations,
-    onChooseLocation
+    locations
 }) => {
     return (
         <View style={styles.listContainer}>
             <FlatList data={locations}
                         renderItem={({ item }) => 
                             <LocationButton
-                                location={item}
-                                onChooseLocation={onChooseLocation} />}
+                                location={item} />}
                             >
             </FlatList>
         </View>

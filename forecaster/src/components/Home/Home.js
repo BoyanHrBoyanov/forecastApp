@@ -10,7 +10,6 @@ export const Home = ({
     setSearchText,
     onSearch,
     modifiedLocations,
-    onChooseLocation,
     langPicker
 }) => {
     return (
@@ -21,8 +20,7 @@ export const Home = ({
                     onSearch={onSearch}
                     langPicker={langPicker} ></SearchBar>
                 {modifiedLocations && 
-                    <LocationsList locations={modifiedLocations}
-                                onChooseLocation={onChooseLocation} />}
+                    <LocationsList locations={modifiedLocations} />}
             </View>
             <View>
                 <Link to="/else">

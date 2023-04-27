@@ -19,9 +19,7 @@ export default function App() {
         locationHandler(searchQuery, setModifiedLocations);
     }
 
-    function onChooseLocation(location) {
-        console.log(location);
-    }
+
 
     function langPicker() {
         return lang === 'EN' ? langEN : langBG;
@@ -36,7 +34,6 @@ export default function App() {
                         setSearchText={setSearchText}
                         onSearch={onSearch}
                         modifiedLocations={modifiedLocations}
-                        onChooseLocation={onChooseLocation}
                         langPicker={langPicker} />
                 } />
                 <Route path="/else" element={<FlatListBasics />} />
