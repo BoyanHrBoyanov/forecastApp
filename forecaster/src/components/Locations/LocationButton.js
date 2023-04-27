@@ -1,18 +1,16 @@
-import { View, Text, TouchableHighlight, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 export const LocationButton = ({
     location,
     onChooseLocation
 }) => {
-
-
     return (
         <View>
-            <TouchableHighlight 
+            <TouchableOpacity 
                     onPress={() => onChooseLocation(location)}
                     style={styles.button}>
                 <Text>{location.displayName}</Text>
-            </TouchableHighlight>
+            </TouchableOpacity>
         </View>
     );
 }

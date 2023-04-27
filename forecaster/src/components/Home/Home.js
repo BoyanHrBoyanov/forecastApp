@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Button } from 'react-native';
 import { Link, Route } from 'react-router-native';
 
 import { SearchBar } from "../SearchBar/SearchBar";
-import { LocationButton } from "../LocationButton/LocationButton";
+import { LocationsList } from "../Locations/LocationsList";
 import { FlatListBasics } from '../Test/FlatList';
 
 export const Home = ({
@@ -20,11 +20,9 @@ export const Home = ({
                     setSearchText={setSearchText}
                     onSearch={onSearch}
                     langPicker={langPicker} ></SearchBar>
-                {modifiedLocations.map(l =>
-                    <LocationButton
-                        key={l.i}
-                        location={l}
-                        onChooseLocation={onChooseLocation} />)}
+                {modifiedLocations && 
+                    <LocationsList locations={modifiedLocations}
+                                onChooseLocation={onChooseLocation} />}
             </View>
             <View>
                 <Link to="/else">

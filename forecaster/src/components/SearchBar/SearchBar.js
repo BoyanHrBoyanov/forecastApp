@@ -1,8 +1,5 @@
 import { TouchableOpacity, View, TextInput, Text, StyleSheet } from "react-native";
 
-import { langBG } from "../../lang/bg";
-import { langEN } from "../../lang/en";
-
 export const SearchBar = ({
     searchText,
     setSearchText,
