@@ -22,7 +22,7 @@ export default function App() {
                 <Route path="/" element={
                     <Home langPicker={langPicker} />
                 } />
-                <Route path="/else" element={<FlatListBasics />} />
+                
             </Routes>
         </NativeRouter>
     );

@@ -22,11 +22,6 @@ export const Home = ({
                     <LocationsList locations={modifiedLocations}
                                     loading={loading} />}
             </View>
-            <View>
-                <Link to="/else">
-                    <Text>Go Elsewhere</Text>
-                </Link>
-            </View>
         </>
     );
 }

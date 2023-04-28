@@ -4,7 +4,9 @@ export const LocationButton = ({
     location
 }) => {
     function onChooseLocation() {
-        console.log(location);
+        const lat = Number(location.lat).toFixed(2);
+        const lon = Number(location.lon).toFixed(2);
+        console.log(lat + ' & ' + lon);
     }
 
     return (
@@ -20,6 +22,9 @@ export const LocationButton = ({
 
 const styles = StyleSheet.create({
     button: {
-        height: 50
+        height: 70,
+        paddingLeft: 10,
+        paddingBottom: 5
+        
     }
 })

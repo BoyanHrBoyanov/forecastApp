@@ -25,6 +25,8 @@ export const LocationsList = ({
 
 const styles = StyleSheet.create({
     listContainer: {
-        alignItems: 'center'
+        alignItems: 'center',
+        marginHorizontal: 10,
+        marginBottom: 10
     }
 })
