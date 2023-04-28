@@ -1,21 +1,25 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { Link } from "react-router-native";
+
+import { weatherDataHandler } from "../../handlers/weatherDataHandler";
 
 export const LocationButton = ({
     location
 }) => {
-    function onChooseLocation() {
-        const lat = Number(location.lat).toFixed(2);
-        const lon = Number(location.lon).toFixed(2);
-        console.log(lat + ' & ' + lon);
-    }
-
     return (
         <View>
-            <TouchableOpacity 
-                    onPress={onChooseLocation}
-                    style={styles.button}>
-                <Text>{location.displayName}</Text>
-            </TouchableOpacity>
+            <Link to="/week"
+                activeOpacity={0.3}
+                underlayColor="oldlace"
+                style={styles.button}
+                state={{ 
+                    lat: Number(location.lat).toFixed(2), 
+                    lon: Number(location.lon).toFixed(2) 
+                }}>
+                <View>
+                    <Text>{location.displayName}</Text>
+                </View>
+            </Link>
         </View>
     );
 }
@@ -25,6 +29,5 @@ const styles = StyleSheet.create({
         height: 70,
         paddingLeft: 10,
         paddingBottom: 5
-        
     }
 })
