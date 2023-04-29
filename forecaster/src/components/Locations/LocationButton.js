@@ -1,7 +1,6 @@
 import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
 import { Link } from "react-router-native";
 
-import { weatherDataHandler } from "../../handlers/weatherDataHandler";
 
 export const LocationButton = ({
     location
@@ -14,7 +13,8 @@ export const LocationButton = ({
                 style={styles.button}
                 state={{ 
                     lat: Number(location.lat).toFixed(2), 
-                    lon: Number(location.lon).toFixed(2) 
+                    lon: Number(location.lon).toFixed(2),
+                    name: location.displayName
                 }}>
                 <View>
                     <Text>{location.displayName}</Text>
