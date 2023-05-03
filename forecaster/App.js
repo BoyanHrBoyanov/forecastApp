@@ -7,8 +7,8 @@ import { langEN } from "./src/lang/en";
 import { Home } from "./src/components/Home/Home";
 import { FlatListBasics } from "./src/components/Test/FlatList";
 import { Header } from "./src/components/Header/Header";
-import { WeekForecast } from "./src/components/Forecast/WeekForecast";
-import { DayDetailed } from "./src/components/Forecast/DayDetailed";
+import { WeekForecast } from "./src/components/Forecast/DayliForecast";
+import { DayDetailed } from "./src/components/Forecast/HourlyForecast";
 
 export default function App() {
     const [lang, setLang] = useState('EN')
