@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-native";
 import { dayIconHandler } from "../../handlers/weatherHandler";
 
 
-export const DayDetailed = ({ langPicker }) => {
+export const HourlyForecast = ({ langPicker }) => {
     const { state } = useLocation(); // { data, i }
     const { dailyData, hourlyData, i } = state;
 

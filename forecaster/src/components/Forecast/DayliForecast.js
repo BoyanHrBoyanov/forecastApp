@@ -6,7 +6,7 @@ import { paths } from "../../constants/paths";
 import { dayIconHandler } from "../../handlers/weatherHandler";
 
 
-export const WeekForecast = ({ langPicker }) => {
+export const DailyForecast = ({ langPicker }) => {
     const [currentData, setCurrentData] = useState({});
     const [hourlyData, setHourlyData] = useState({});
     const [dailyData, setDailyData] = useState({});

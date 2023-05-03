@@ -7,8 +7,8 @@ import { langEN } from "./src/lang/en";
 import { Home } from "./src/components/Home/Home";
 import { FlatListBasics } from "./src/components/Test/FlatList";
 import { Header } from "./src/components/Header/Header";
-import { WeekForecast } from "./src/components/Forecast/DayliForecast";
-import { DayDetailed } from "./src/components/Forecast/HourlyForecast";
+import { DailyForecast } from "./src/components/Forecast/DayliForecast";
+import { HourlyForecast } from "./src/components/Forecast/HourlyForecast";
 
 export default function App() {
     const [lang, setLang] = useState('EN')
@@ -24,8 +24,8 @@ export default function App() {
                 <Route path="/" element={
                     <Home langPicker={langPicker} />
                 } />
-                <Route path="/week" element={<WeekForecast langPicker={langPicker} />} />
-                <Route path="/details" element={<DayDetailed langPicker={langPicker} />} />
+                <Route path="/week" element={<DailyForecast langPicker={langPicker} />} />
+                <Route path="/details" element={<HourlyForecast langPicker={langPicker} />} />
             </Routes>
         </NativeRouter>
     );
