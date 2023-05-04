@@ -22,9 +22,9 @@ export const Header = ({
 
 const styles = StyleSheet.create({
     header: {
-        marginTop: 40,
-        marginLeft: 20,
-        backgroundColor: '#fff'
+        paddingTop: 40,
+        // marginLeft: 20,
+        backgroundColor: 'oldlace'
     },
     button: {
         width: 40,
