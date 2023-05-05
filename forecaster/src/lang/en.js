@@ -3,9 +3,11 @@ export const langEN = {
     'search': 'Search',
     'm': 'm',
     'mm': 'mm',
+    'h': 'h',
+    'kmh': 'km/h',
     days: [
-        'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'
+        'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'
     ],
-    'rainProb': 'Rain probability',
+    'rainProb': 'Rain probability', //not in use
     'rainSum': 'Rain sum', //not in use
 }

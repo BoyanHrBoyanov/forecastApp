@@ -52,13 +52,17 @@ export const DailyForecast = ({ langPicker }) => {
 
     return (
         <>
-            <View style={styles.header}>
-                <Text style={styles.headerText}>
-                    {currentData.name}, {currentData.elevation}{langPicker().m}
-                </Text>
-            </View>
+            {loading 
+            ? <ActivityIndicator size="large" />
+            : currentData ?
+                <View style={styles.header}>
+                    <Text style={styles.headerText}>
+                        {currentData.name}{`, ${currentData.elevation}${langPicker().m}.`}
+                    </Text>
+                </View> 
+                : null}
+            
             <View style={styles.container}>
-                {loading ? <ActivityIndicator size="large" /> : null}
                 {Object.keys(dailyData).length ? dailyData.time.map((x, i) =>
                     <Link to="/details"
                         key={x}
@@ -72,11 +76,10 @@ export const DailyForecast = ({ langPicker }) => {
                                     {langPicker().days[new Date(dailyData.time[i]).getDay()]}
                                 </Text>
                                 <Text>
-                                    {/* {dailyData.time[i].split('-').slice(1).join('-')} */}
                                     {dailyData.time[i].split('-').join('/')}
                                 </Text>
                             </View>
-                            <View style={styles.column}>
+                            <View style={[styles.column, styles.icon]}>
                                 {hourlyData ? iconHandler(i) : null}
                             </View>
                             <View style={styles.column}>
@@ -89,12 +92,20 @@ export const DailyForecast = ({ langPicker }) => {
                                     <MaterialCommunityIcons name={'temperature-celsius'} size={15} />
                                 </Text>
                             </View>
-                            <View style={styles.column}>
+                            <View style={[styles.column, styles.rightZone,
+                                        {position: 'absolute', right: 0, top: 0}]}>
                                 <Text>
-                                    <Entypo name={'drop'} /> {dailyData.rain_sum[i]} {langPicker().mm}
+                                    <Entypo name={'drop'} size={18} /> {`${dailyData.rain_sum[i].toFixed(0)} ${langPicker().mm}`}
+                                    <MaterialCommunityIcons name={'slash-forward'} size={18}/>
+                                    {`${dailyData.precipitation_probability_max[i]} %`}
+                                    <MaterialCommunityIcons name={'slash-forward'} size={18}/>
+                                    {`${dailyData.precipitation_hours[i]}${langPicker().h}`}
                                 </Text>
-                                <Text>
-                                    {langPicker().rainProb} - {dailyData.precipitation_probability_max[i]} %
+                                <Text style={{position: 'absolute', right: 0, top: 40}}>
+                                    <View style={{transform: [{rotate: `${dailyData.winddirection_10m_dominant[i]}deg`}]}}>
+                                        <Entypo name={'arrow-long-up'} size={18} color={'lightyellow'} />
+                                    </View>
+                                    {` ${dailyData.windspeed_10m_max[i].toFixed(0)} ${langPicker().kmh}`}
                                 </Text>
                             </View>
                         </View>
@@ -119,14 +130,23 @@ const styles = StyleSheet.create({
         fontSize: 18,
         alignSelf: 'center'
     },
+    icon: {
+        paddingLeft: 20,
+        width: 70
+    },
     degrees: {
-        fontSize: 17
+        // paddingLeft: 20,
+        fontSize: 17,
+        width: 60
+    },
+    rightZone:{
+        width: 160
     },
     container: {
         backgroundColor: 'oldlace'
     },
     containerDaily: {
-        height: 70,
+        height: 99,
         paddingRight: 10,
         paddingTop: 12,
         paddingBottom: 12,
@@ -140,11 +160,13 @@ const styles = StyleSheet.create({
     column: {
         flexDirection: 'column',
         paddingLeft: 10,
+        paddingTop: 10
     },
     row: {
         flexDirection: 'row'
     },
     footer: {
-        backgroundColor: 'oldlace'
+        backgroundColor: 'oldlace',
+        height: 21
     }
 })
