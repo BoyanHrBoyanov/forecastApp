@@ -21,10 +21,17 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "package": "com.boyanhboyanov.forecaster"
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b1030c8c-d532-40d8-b2d5-486f23d896b7"
+      }
+    },
+    "owner": "boyanhboyanov"
   }
 }

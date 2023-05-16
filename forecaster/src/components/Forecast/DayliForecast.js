@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { Link, useLocation } from "react-router-native";
 
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -16,7 +16,7 @@ export const DailyForecast = ({ langPicker }) => {
     const [hourlyData, setHourlyData] = useState({});
     const [dailyData, setDailyData] = useState({});
     const [loading, setLoading] = useState(true);
-    const { state } = useLocation()
+    const { state } = useLocation();
 
     useEffect(() => {
         setLoading(true);
@@ -62,11 +62,11 @@ export const DailyForecast = ({ langPicker }) => {
                 </View> 
                 : null}
             
-            <View style={styles.container}>
+            <ScrollView style={styles.container}>
                 {Object.keys(dailyData).length ? dailyData.time.map((x, i) =>
                     <Link to="/details"
                         key={x}
-                        state={{ dailyData, hourlyData, i }}
+                        state={{ dailyData, hourlyData, currentData, dataIndex: i }}
                         activeOpacity={0.3}
                         underlayColor="#f2eee6"
                         style={styles.containerDaily}>
@@ -76,7 +76,7 @@ export const DailyForecast = ({ langPicker }) => {
                                     {langPicker().days[new Date(dailyData.time[i]).getDay()]}
                                 </Text>
                                 <Text>
-                                    {dailyData.time[i].split('-').join('/')}
+                                    {dailyData.time[i].split('-').reverse().join('/')}
                                 </Text>
                             </View>
                             <View style={[styles.column, styles.icon]}>
@@ -85,11 +85,11 @@ export const DailyForecast = ({ langPicker }) => {
                             <View style={styles.column}>
                                 <Text style={styles.degrees}>
                                     {(dailyData.temperature_2m_max[i]).toFixed(0)}
-                                    <MaterialCommunityIcons name={'temperature-celsius'} size={15} />
+                                    <MaterialCommunityIcons name={'temperature-celsius'} size={18} />
                                 </Text>
                                 <Text style={styles.degrees}>
                                     {(dailyData.temperature_2m_min[i]).toFixed(0)}
-                                    <MaterialCommunityIcons name={'temperature-celsius'} size={15} />
+                                    <MaterialCommunityIcons name={'temperature-celsius'} size={18} />
                                 </Text>
                             </View>
                             <View style={[styles.column, styles.rightZone,
@@ -111,7 +111,7 @@ export const DailyForecast = ({ langPicker }) => {
                         </View>
                     </Link>)
                     : null}
-            </View>
+            </ScrollView>
             <TouchableOpacity style={styles.footer}>
                 <Link to="/">
                     <Text>Back</Text>
@@ -146,10 +146,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'oldlace'
     },
     containerDaily: {
-        height: 99,
+        height: 80,
         paddingRight: 10,
-        paddingTop: 12,
-        paddingBottom: 12,
+        // paddingTop: 12,
+        // paddingBottom: 12,
         backgroundColor: 'skyblue',
         borderBottomWidth: 3
     },
