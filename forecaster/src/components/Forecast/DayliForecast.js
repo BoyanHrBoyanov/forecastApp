@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { Link, useLocation } from "react-router-native";
+import { ActivityIndicator, ScrollView, StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import { Link, useLocation, useNavigate } from "react-router-native";
 
 import { FontAwesome5 } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
@@ -16,6 +16,7 @@ export const DailyForecast = ({ langPicker }) => {
     const [hourlyData, setHourlyData] = useState({});
     const [dailyData, setDailyData] = useState({});
     const [loading, setLoading] = useState(true);
+    const navigate = useNavigate();
     const { state } = useLocation();
 
     useEffect(() => {
@@ -112,11 +113,9 @@ export const DailyForecast = ({ langPicker }) => {
                     </Link>)
                     : null}
             </ScrollView>
-            <TouchableOpacity style={styles.footer}>
-                <Link to="/">
-                    <Text>Back</Text>
-                </Link>
-            </TouchableOpacity>
+            <TouchableHighlight onPress={() => navigate(-1)}>
+                <Text>Back</Text>
+            </TouchableHighlight>
         </>
     );
 }

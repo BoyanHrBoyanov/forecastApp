@@ -1,22 +1,24 @@
-import { useEffect } from "react";
-import { Dimensions, Image, ScrollView, StyleSheet, Text, TouchableHighlight, View } from "react-native";
-import { Link, useLocation, useNavigate } from "react-router-native";
+import { useEffect, useRef } from "react";
+import { Dimensions, ScrollView, StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import { useLocation, useNavigate } from "react-router-native";
 
 import { dayIconHandler } from "../../handlers/weatherHandler";
 
 
 export const HourlyForecast = ({ langPicker }) => {
+    const container = useRef(null);
+    
     const { state } = useLocation();
     const navigate = useNavigate();
     const { dailyData, hourlyData, currentData, dataIndex } = state;
-
-    function scrollHandler(event) {
-
-    }
-
+    
     const width = Dimensions.get('window');
-
+    
     const cloudsArr = dayIconHandler(hourlyData);
+
+    useEffect(() => {
+        container.current.scrollTo({x: dataIndex * width.width, y: 0})
+    }, [dataIndex]);
 
     return (
         <>
@@ -26,11 +28,13 @@ export const HourlyForecast = ({ langPicker }) => {
                 </Text>
             </View>
             <ScrollView
+                ref={container}
                 contentContainerStyle={styles.container}
                 showsHorizontalScrollIndicator={true}
                 pagingEnabled={true}
                 horizontal={true}
-                onScroll={scrollHandler}
+                persistentScrollbar={true}
+                
             >
                 {dailyData
                     ? dailyData.time.map((date, index) =>
