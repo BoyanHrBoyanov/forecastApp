@@ -9,6 +9,7 @@ import { Entypo } from '@expo/vector-icons';
 
 import { paths } from "../../constants/paths";
 import { dayIconHandler } from "../../handlers/weatherHandler";
+import { multiArrayModifier } from "../../handlers/longArraysHandler";
 
 
 export const DailyForecast = ({ langPicker }) => {
@@ -40,15 +41,9 @@ export const DailyForecast = ({ langPicker }) => {
     }, []);
 
     function iconHandler(index) {
-        let cloudsArr = dayIconHandler(hourlyData);
+        const [cloudsArr] = multiArrayModifier([hourlyData.cloudcover]);
+        return dayIconHandler(cloudsArr[index]);
 
-        if (cloudsArr[index].status === 'clear sky') {
-            return <Ionicons name={'sunny'} size={32} />
-        } else if (cloudsArr[index].status === 'sun and clouds') {
-            return <FontAwesome5 name={'cloud-sun'} size={32} />
-        } else {
-            return <FontAwesome5 name={'cloud'} size={30} />
-        }
     }
 
     return (

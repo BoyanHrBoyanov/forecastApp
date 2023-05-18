@@ -1,28 +1,12 @@
+import { FontAwesome5 } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
+export function dayIconHandler(arr) {
+        let sum = 0;
+        arr.forEach(x => sum += x);
+        let avg = sum / 24;
 
-let cloudCover = [0, 0, 0, 0, 0, 0, 0];
-let index = 0;
-let cloudsArr = [];
-
-export function dayIconHandler(hourlyData) {
-    hourlyData.cloudcover.forEach((clouds, i) => {
-        cloudCover[index] += clouds;
-
-        if (i === 23 || ((i - 23) % 24 === 0))
-            return index++
-        if (i === 167)
-            return
-    });
-    let cloudCoverMiddle = cloudCover.map(x => (x / 24).toFixed(2));
-
-    cloudCoverMiddle.forEach((clouds, i) => {
-        cloudsArr[i] = {
-            cloudCover: clouds,
-            status: iconModel(clouds)
-        }
-    });
-
-    return cloudsArr;
+        return iconHandler(avg);
 }
 
 function iconModel(val) {
@@ -33,4 +17,27 @@ function iconModel(val) {
     } else {
         return 'cloudy';
     }
+}
+
+export function iconHandler(value, isDay = 1) {
+
+    if (isDay) {
+        if (iconModel(value) === 'clear sky') {
+            return <Ionicons name={'sunny'} size={32} />
+        } else if (iconModel(value) === 'sun and clouds') {
+            return <FontAwesome5 name={'cloud-sun'} size={32} />
+        } else {
+            return <FontAwesome5 name={'cloud'} size={30} />
+        }
+    } else {
+        if (iconModel(value) === 'clear sky') {
+            return <Ionicons name={'moon-sharp'} size={32} />
+        } else if (iconModel(value) === 'sun and clouds') {
+            return <FontAwesome5 name={'cloud-moon'} size={32} />
+        } else {
+            return <FontAwesome5 name={'cloud'} size={30} />
+        }
+    }
+
+
 }
