@@ -1,9 +1,9 @@
 import { useEffect, useRef } from "react";
 import { Dimensions, ScrollView, StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import { useLocation, useNavigate } from "react-router-native";
-import { multiArrayModifier } from "../../handlers/longArraysHandler";
 
-import { iconHandler } from "../../handlers/weatherHandler";
+import { multiArrayModifier } from "../../handlers/longArraysHandler";
+import { HourlyFlatList } from "./HoursFlatList";
 
 
 export const HourlyForecast = ({ langPicker }) => {
@@ -17,12 +17,16 @@ export const HourlyForecast = ({ langPicker }) => {
         time,
         temperature,
         clouds,
-        isDay
+        isDay,
+        windDirection,
+        windSpeed
     ] = multiArrayModifier([
         hourlyData.time,
         hourlyData.temperature_2m,
         hourlyData.cloudcover,
-        hourlyData.is_day
+        hourlyData.is_day,
+        hourlyData.winddirection_10m,
+        hourlyData.windspeed_10m
     ]);
 
 
@@ -56,23 +60,18 @@ export const HourlyForecast = ({ langPicker }) => {
                             <Text style={styles.headerText}>
                                 {dailyData.time[index].split('-').reverse().join('/')}
                             </Text>
-                            <ScrollView
-                                contentContainerStyle={styles.containerHourly}>
-                                {time
-                                    ? time[index].map((hour, i) =>
-                                        <View style={[styles.hourly, styles.row]} key={hour}>
-                                            <View style={styles.column}>
-                                                <Text>{hour.split('T')[1]}</Text>
-                                                <Text>{temperature[index][i]}</Text>
-                                            </View>
-                                            <View style={styles.column}>
-                                                <Text>{iconHandler(clouds[index][i], isDay[index][i])}</Text>
-                                            </View>
-                                        </View>
-                                    )
-                                    : null
-                                }
-                            </ScrollView>
+                            {hourlyData
+                                ? <HourlyFlatList
+                                    langPicker={langPicker}
+                                    index={index}
+                                    time={time[index]}
+                                    temperature={temperature[index]}
+                                    clouds={clouds[index]}
+                                    isDay={isDay[index]}
+                                    windDirection={windDirection[index]}
+                                    windSpeed={windSpeed[index]} />
+                                : null}
+
                         </View>)
                     : null}
             </ScrollView>
@@ -115,5 +114,9 @@ const styles = StyleSheet.create({
         paddingRight: 10,
         backgroundColor: 'skyblue',
         borderBottomWidth: 3
+    },
+    degrees: {
+        fontSize: 17,
+        width: 40
     },
 })
