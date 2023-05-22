@@ -10,25 +10,9 @@ import { multiArrayModifier } from "../../handlers/longArraysHandler";
 export const HourlyFlatList = ({
     langPicker,
     index,
-    time,
-    temperature,
-    clouds,
-    isDay,
-    windDirection,
-    windSpeed }) => {
+    data }) => {
 
-    const data = [];
 
-    time.forEach((x, i) =>
-        data[i] = {
-            time: x,
-            temperature: temperature[i],
-            clouds: clouds[i],
-            isDay: isDay[i],
-            windDirection: windDirection[i],
-            windSpeed: windSpeed[i],
-        }
-    );
 
     return (
         <SafeAreaView style={styles.containerHourly}>

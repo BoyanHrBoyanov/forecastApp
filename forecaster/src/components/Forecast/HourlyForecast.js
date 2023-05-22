@@ -3,6 +3,7 @@ import { Dimensions, ScrollView, StyleSheet, Text, TouchableHighlight, View } fr
 import { useLocation, useNavigate } from "react-router-native";
 
 import { multiArrayModifier } from "../../handlers/longArraysHandler";
+import { HourlyHeader } from "./HourlyHeader";
 import { HourlyFlatList } from "./HoursFlatList";
 
 
@@ -13,22 +14,39 @@ export const HourlyForecast = ({ langPicker }) => {
     const navigate = useNavigate();
     const { dailyData, hourlyData, currentData, dataIndex } = state;
 
-    const [
-        time,
-        temperature,
-        clouds,
-        isDay,
-        windDirection,
-        windSpeed
-    ] = multiArrayModifier([
-        hourlyData.time,
-        hourlyData.temperature_2m,
-        hourlyData.cloudcover,
-        hourlyData.is_day,
-        hourlyData.winddirection_10m,
-        hourlyData.windspeed_10m
-    ]);
+    // const [
+    //     time,
+    //     temperature,
+    //     clouds,
+    //     isDay,
+    //     windDirection,
+    //     windSpeed
+    // ] = multiArrayModifier([
+    //     hourlyData.time,
+    //     hourlyData.temperature_2m,
+    //     hourlyData.cloudcover,
+    //     hourlyData.is_day,
+    //     hourlyData.winddirection_10m,
+    //     hourlyData.windspeed_10m
+    // ]);
 
+
+    // const data = [];
+
+    const data = hourlyData.time.map((x, i) => ({
+        time: x,
+        temperature: hourlyData.temperature_2m[i],
+        clouds: hourlyData.cloudcover[i],
+        isDay: hourlyData.is_day[i],
+        windDirection: hourlyData.winddirection_10m[i],
+        windSpeed: hourlyData.windspeed_10m[i],
+    }));
+
+    function startEnd (index, str) {
+        return str === 'start'
+            ? index * 24
+            : (index + 1) * 24;
+    }
 
     const width = Dimensions.get('window');
 
@@ -54,22 +72,14 @@ export const HourlyForecast = ({ langPicker }) => {
                 {dailyData
                     ? dailyData.time.map((date, index) =>
                         <View style={[width]} key={index}>
-                            <Text style={styles.headerText}>
-                                {langPicker().days[new Date(dailyData.time[index]).getDay()]}
-                            </Text>
-                            <Text style={styles.headerText}>
-                                {dailyData.time[index].split('-').reverse().join('/')}
-                            </Text>
+                            <HourlyHeader 
+                                date={date}
+                                langPicker={langPicker} />
                             {hourlyData
                                 ? <HourlyFlatList
                                     langPicker={langPicker}
                                     index={index}
-                                    time={time[index]}
-                                    temperature={temperature[index]}
-                                    clouds={clouds[index]}
-                                    isDay={isDay[index]}
-                                    windDirection={windDirection[index]}
-                                    windSpeed={windSpeed[index]} />
+                                    data={data.slice(startEnd(index, 'start'), startEnd(index, 'end'))} />
                                 : null}
 
                         </View>)
