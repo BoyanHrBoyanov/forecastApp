@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { ActivityIndicator, ScrollView, StyleSheet, Text, TouchableHighlight, View } from "react-native";
-import { Link, useLocation, useNavigate } from "react-router-native";
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Link, useLocation } from "react-router-native";
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
@@ -15,7 +15,6 @@ export const DailyForecast = ({ langPicker }) => {
     const [hourlyData, setHourlyData] = useState({});
     const [dailyData, setDailyData] = useState({});
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
     const { state } = useLocation();
 
     useEffect(() => {
@@ -47,7 +46,7 @@ export const DailyForecast = ({ langPicker }) => {
     return (
         <>
             {loading 
-            ? <ActivityIndicator size="large" />
+            ? <ActivityIndicator size="large" style={styles.activityIndicator} />
             : currentData ?
                 <View style={styles.header}>
                     <Text style={styles.headerText}>
@@ -106,9 +105,6 @@ export const DailyForecast = ({ langPicker }) => {
                     </Link>)
                     : null}
             </ScrollView>
-            <TouchableHighlight onPress={() => navigate(-1)}>
-                <Text>Back</Text>
-            </TouchableHighlight>
         </>
     );
 }
@@ -121,6 +117,9 @@ const styles = StyleSheet.create({
     headerText: {
         fontSize: 18,
         alignSelf: 'center'
+    },
+    activityIndicator: {
+        backgroundColor: 'oldlace'
     },
     icon: {
         paddingLeft: 20,
