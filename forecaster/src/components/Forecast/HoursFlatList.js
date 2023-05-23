@@ -6,7 +6,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 
 
-export const HourlyFlatList = memo(function HourlyFlatList({
+export const HoursFlatList = memo(function HoursFlatList({
     langPicker,
     index,
     data }) {

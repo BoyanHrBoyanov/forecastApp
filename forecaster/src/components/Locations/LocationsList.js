@@ -7,10 +7,6 @@ export const LocationsList = ({
     locations,
     loading
 }) => {
-    //about the FlatList
-    //
-    //progressViewOffset
-    //Set this when offset is needed for the loading indicator to show correctly.
     return (
         <View style={styles.listContainer}>
             {loading && <ActivityIndicator size='large' />}

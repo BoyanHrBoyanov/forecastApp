@@ -35,17 +35,15 @@ export const SearchBar = ({
 const styles = StyleSheet.create({
     searchContainer: {
         flexDirection: 'row',
-        // alignContent: 'center',
         marginBottom: 5,
         padding: 7,
         width: '100%',
-        // backgroundColor: 'yellow'
     },
     searchInputContainer: {
         width: '70%',
         borderWidth: 1,
         borderRadius: 20,
-        borderColor: '#F0F0F1'
+        borderColor: 'black'
     },
     searchInput: {
         textAlign: 'center',
@@ -53,8 +51,8 @@ const styles = StyleSheet.create({
         fontSize: 18
     },
     button: {
-        // alignItems: 'center',
-        backgroundColor: '#DDDDDD',
+        backgroundColor: 'moccasin',
+        borderRadius: 10,
         padding: 10,
         margin: 10
     },

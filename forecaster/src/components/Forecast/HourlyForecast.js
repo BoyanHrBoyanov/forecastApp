@@ -3,7 +3,7 @@ import { Dimensions, FlatList, SafeAreaView, StyleSheet, Text, View } from "reac
 import { useLocation } from "react-router-native";
 
 import { HourlyHeader } from "./HourlyHeader";
-import { HourlyFlatList } from "./HoursFlatList";
+import { HoursFlatList } from "./HoursFlatList";
 
 
 export const HourlyForecast = memo(function HourlyForecast({ langPicker }) {
@@ -35,7 +35,7 @@ export const HourlyForecast = memo(function HourlyForecast({ langPicker }) {
                     date={item}
                     langPicker={langPicker} />
                 {hourlyData
-                    ? <HourlyFlatList
+                    ? <HoursFlatList
                         langPicker={langPicker}
                         index={index}
                         data={data.slice(startEnd(index, 'start'), startEnd(index, 'end'))} />

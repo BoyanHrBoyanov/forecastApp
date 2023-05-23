@@ -9,7 +9,7 @@ export const LocationButton = ({
         <View>
             <Link to="/week"
                 activeOpacity={0.3}
-                underlayColor="oldlace"
+                underlayColor="moccasin"
                 style={styles.button}
                 state={{ 
                     lat: Number(location.lat).toFixed(2), 
