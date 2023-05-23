@@ -18,6 +18,7 @@ export const HourlyForecast = memo(function HourlyForecast({ langPicker }) {
         isDay: hourlyData.is_day[i],
         windDirection: hourlyData.winddirection_10m[i],
         windSpeed: hourlyData.windspeed_10m[i],
+        precipitation: hourlyData.precipitation[i],
     }));
 
     function startEnd(index, str) {

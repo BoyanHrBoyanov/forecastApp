@@ -39,7 +39,7 @@ export const DailyForecast = ({ langPicker }) => {
 
     function iconHandler(index) {
         const [cloudsArr] = multiArrayModifier([hourlyData.cloudcover]);
-        return dayIconHandler(cloudsArr[index]);
+        return dayIconHandler(cloudsArr[index], 1, dailyData.precipitation_sum[index]);
 
     }
 
@@ -85,14 +85,12 @@ export const DailyForecast = ({ langPicker }) => {
                                     <MaterialCommunityIcons name={'temperature-celsius'} size={18} />
                                 </Text>
                             </View>
-                            <View style={[styles.column, styles.rightZone,
+                            <View style={[styles.column,
                                         {position: 'absolute', right: 0, top: 0}]}>
                                 <Text>
-                                    <Entypo name={'drop'} size={18} /> {`${dailyData.rain_sum[i].toFixed(0)} ${langPicker().mm}`}
+                                    <Entypo name={'drop'} size={18} /> {`${dailyData.precipitation_sum[i].toFixed(0)} ${langPicker().mm}`}
                                     <MaterialCommunityIcons name={'slash-forward'} size={18}/>
                                     {`${dailyData.precipitation_probability_max[i]} %`}
-                                    <MaterialCommunityIcons name={'slash-forward'} size={18}/>
-                                    {`${dailyData.precipitation_hours[i]}${langPicker().h}`}
                                 </Text>
                                 <Text style={{position: 'absolute', right: 0, top: 40}}>
                                     <View style={{transform: [{rotate: `${dailyData.winddirection_10m_dominant[i]}deg`}]}}>
@@ -128,9 +126,6 @@ const styles = StyleSheet.create({
     degrees: {
         fontSize: 17,
         width: 60
-    },
-    rightZone:{
-        width: 160
     },
     container: {
         backgroundColor: 'oldlace'

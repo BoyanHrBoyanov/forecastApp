@@ -22,7 +22,7 @@ export const HoursFlatList = memo(function HoursFlatList({
                     </Text>
                 </View>
                 <View style={styles.column}>
-                    <Text>{iconHandler(item.clouds, item.isDay)}</Text>
+                    <Text>{iconHandler(item.clouds, item.isDay, item.precipitation, true)}</Text>
                 </View>
                 <View style={styles.column}>
                     <View style={{ position: 'absolute', right: 20, top: 40 }}>
