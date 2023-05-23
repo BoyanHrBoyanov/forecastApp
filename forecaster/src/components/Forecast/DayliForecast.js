@@ -126,7 +126,6 @@ const styles = StyleSheet.create({
         width: 70
     },
     degrees: {
-        // paddingLeft: 20,
         fontSize: 17,
         width: 60
     },
@@ -139,8 +138,6 @@ const styles = StyleSheet.create({
     containerDaily: {
         height: 80,
         paddingRight: 10,
-        // paddingTop: 12,
-        // paddingBottom: 12,
         backgroundColor: 'skyblue',
         borderBottomWidth: 3
     },

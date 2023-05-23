@@ -1,14 +1,12 @@
-import { useEffect, useRef } from "react";
-import { Dimensions, FlatList, SafeAreaView, ScrollView, StyleSheet, Text, TouchableHighlight, View } from "react-native";
+import { memo } from "react";
+import { Dimensions, FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { useLocation } from "react-router-native";
 
-import { multiArrayModifier } from "../../handlers/longArraysHandler";
 import { HourlyHeader } from "./HourlyHeader";
 import { HourlyFlatList } from "./HoursFlatList";
 
 
-export const HourlyForecast = ({ langPicker }) => {
-    const scrollViewRef = useRef(null);
+export const HourlyForecast = memo(function HourlyForecast({ langPicker }) {
 
     const { state } = useLocation();
     const { dailyData, hourlyData, currentData, dataIndex } = state;
@@ -30,9 +28,22 @@ export const HourlyForecast = ({ langPicker }) => {
 
     const width = Dimensions.get('window');
 
-    // useEffect(() => {
-    //     scrollViewRef.current.scrollTo({ x: dataIndex * width.width, y: 0 })
-    // }, [dataIndex]);
+    function render({ item, index }) {
+        return (
+            <View style={[width]} key={index}>
+                <HourlyHeader
+                    date={item}
+                    langPicker={langPicker} />
+                {hourlyData
+                    ? <HourlyFlatList
+                        langPicker={langPicker}
+                        index={index}
+                        data={data.slice(startEnd(index, 'start'), startEnd(index, 'end'))} />
+                    : null}
+
+            </View>
+        );
+    }
 
     return (
         <>
@@ -44,32 +55,20 @@ export const HourlyForecast = ({ langPicker }) => {
             <SafeAreaView style={styles.container}>
                 <FlatList
                     data={dailyData.time}
-                    ref={scrollViewRef}
-                    // contentContainerStyle={styles.container}
-                    // showsHorizontalScrollIndicator={true}
+                    getItemLayout={(currData, index) => ({
+                        length: width.width,
+                        offset: width.width * index,
+                        index
+                    })}
                     initialScrollIndex={dataIndex}
                     pagingEnabled={true}
                     horizontal={true}
                     persistentScrollbar={true}
-                    renderItem={({ item, index }) => (
-                        <View style={[width]} key={index}>
-                            <HourlyHeader
-                                date={item}
-                                langPicker={langPicker} />
-                            {hourlyData
-                                ? <HourlyFlatList
-                                    langPicker={langPicker}
-                                    index={index}
-                                    data={data.slice(startEnd(index, 'start'), startEnd(index, 'end'))} />
-                                : null}
-
-                        </View>
-                    )}
-                />
+                    renderItem={render} />
             </SafeAreaView>
         </>
     );
-}
+});
 
 const styles = StyleSheet.create({
     container: {

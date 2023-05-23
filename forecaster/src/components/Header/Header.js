@@ -1,14 +1,16 @@
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useNavigate } from "react-router-native";
+import { useNavigate, useLocation } from "react-router-native";
 
 import { FontAwesome } from '@expo/vector-icons';
-
+import { FontAwesome5 } from '@expo/vector-icons';
+import { Fontisto } from '@expo/vector-icons';
 
 export const Header = ({
     lang,
     setLang
 }) => {
     const navigate = useNavigate();
+    const route = useLocation;
 
     function changeLang() {
         return lang === 'EN'
@@ -19,9 +21,14 @@ export const Header = ({
     return (
         <>
             <View style={styles.header}>
-                <TouchableOpacity style={[styles.backButton, styles.button]} onPress={() => navigate(-1)}>
-                    <FontAwesome name={'arrow-circle-left'} size={22} />
-                </TouchableOpacity>
+                {route().pathname === '/'
+                    ? <TouchableOpacity style={[styles.backButton, styles.button]} >
+                        <FontAwesome5 name={'smile'} size={22} />
+                    </TouchableOpacity>
+                    : <TouchableOpacity style={[styles.backButton, styles.button]} onPress={() => navigate(-1)}>
+                        <FontAwesome name={'arrow-circle-left'} size={22} />
+                    </TouchableOpacity>
+                }
                 <TouchableOpacity onPress={changeLang} style={[styles.button, styles.langButton]}>
                     <Text>{lang}</Text>
                 </TouchableOpacity>
@@ -46,8 +53,8 @@ const styles = StyleSheet.create({
         paddingVertical: 10,
     },
     backButton: {
-        width: 60,
-        height: 50,
+        // width: 60,
+        // height: 50,
     },
     langButton: {
         alignSelf: 'flex-end',
