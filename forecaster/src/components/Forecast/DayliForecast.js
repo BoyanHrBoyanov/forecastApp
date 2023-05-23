@@ -125,7 +125,9 @@ const styles = StyleSheet.create({
     },
     degrees: {
         fontSize: 17,
-        width: 60
+        width: 60,
+        textAlign: 'center',
+        backgroundColor: 'whitesmoke'
     },
     container: {
         backgroundColor: 'oldlace'

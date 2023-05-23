@@ -50,7 +50,7 @@ export function iconHandler(value, isDay = 1, rain, isHourly = false) {
                 }
 
                 if (rain >= 0 && rain <= 4) {
-                    return <FontAwesome5 name={'cloud'} size={30} />
+                    return <FontAwesome5 name={'cloud'} size={28} />
                 } else if (rain > 4 && rain <= 15) {
                     return <FontAwesome5 name="cloud-rain" size={32} />
                 } else {
@@ -76,7 +76,7 @@ export function iconHandler(value, isDay = 1, rain, isHourly = false) {
                 } else if (rain > 4) {
                     return <FontAwesome5 name="cloud-showers-heavy" size={32} />
                 } else {
-                    return <FontAwesome5 name={'cloud'} size={30} />
+                    return <FontAwesome5 name={'cloud'} size={28} />
                 }
             }
         }

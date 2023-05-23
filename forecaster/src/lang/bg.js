@@ -8,6 +8,5 @@ export const langBG = {
     days: [
         'Нед', 'Пон', 'Вт', 'Ср', 'Четв', 'Пет', 'Съб'
     ],
-    'rainProb': 'Вероятност за валежи', //not in use
-    'rainSum': 'Количество валежи', //not in use
+    'feelsLike': 'усеща се',
 }
