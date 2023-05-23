@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { TouchableOpacity, View, TextInput, Text, StyleSheet } from "react-native";
+import { Keyboard, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
 
 import { locationHandler } from '../../handlers/locationHandler'
 
@@ -12,6 +12,7 @@ export const SearchBar = ({
 
     function onSearch() {
         const searchQuery = searchText.toLowerCase().split(' ').join('+');
+        Keyboard.dismiss();
         locationHandler(searchQuery, setModifiedLocations, setLoading);
     }
 
