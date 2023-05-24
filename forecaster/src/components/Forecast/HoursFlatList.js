@@ -25,7 +25,7 @@ export const HoursFlatList = memo(function HoursFlatList({
                     <Text>{iconHandler(item.clouds, item.isDay, item.precipitation, true)}</Text>
                 </View>
                 <View style={styles.column}>
-                    <View style={{ position: 'absolute', right: 20, top: 40 }}>
+                    <View style={{ position: 'absolute', right: 30, top: 40 }}>
                         <View style={{ transform: [{ rotate: `${item.windDirection}deg` }] }}>
                             <Entypo name={'arrow-long-up'}
                                 size={18}
