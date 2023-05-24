@@ -20,7 +20,8 @@ export const Header = ({
 
     return (
         <>
-            <StatusBar />
+            <StatusBar 
+            barStyle={'dark-content'} />
             <View style={styles.header}>
                 {route().pathname === '/'
                     ? <TouchableOpacity style={styles.button} >
@@ -42,7 +43,7 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingTop: 10,
+        // paddingTop: 10,
         backgroundColor: 'oldlace'
     },
     button: {
