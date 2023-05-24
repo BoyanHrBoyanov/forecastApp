@@ -4,10 +4,11 @@ import { FlatList, SafeAreaView, StyleSheet, Text, View } from "react-native";
 import { iconHandler } from "../../handlers/weatherHandler";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
-
+import { Feather } from '@expo/vector-icons';
 
 export const HoursFlatList = memo(function HoursFlatList({
     langPicker,
+    dailyData,
     index,
     data }) {
 
@@ -56,11 +57,38 @@ export const HoursFlatList = memo(function HoursFlatList({
         );
     }
 
+    function listHeader() {
+        return (
+            <>
+            <View style={[styles.row, styles.listHeader]}>
+                <View style={styles.column}>
+                    <Feather name="sunrise" size={18} />
+                    <Text>
+                        {dailyData.sunrise[index].split('T')[1]}
+                    </Text>
+                </View>
+                <View style={styles.column}>
+                    <Feather name="sunset" size={18} />
+                    <Text>
+                        {dailyData.sunset[index].split('T')[1]}
+                    </Text>
+                </View>
+                <View style={styles.column}>
+                    <Text style={styles.uv}>
+                        UV {dailyData.uv_index_max[index].toFixed(0)}
+                    </Text>
+                </View>
+            </View>
+            </>
+        );
+    }
+
     return (
         <SafeAreaView style={styles.containerHourly}>
             <FlatList
                 data={data}
                 removeClippedSubviews={true}
+                ListHeaderComponent={listHeader}
                 renderItem={render} />
         </SafeAreaView>
     );
@@ -78,7 +106,7 @@ const styles = StyleSheet.create({
     },
     containerHourly: {
         //TODO: find another way to scroll a ScrollView to the bottom
-        paddingBottom: 165
+        paddingBottom: 170
     },
     hourly: {
         height: 80,
@@ -96,5 +124,14 @@ const styles = StyleSheet.create({
         fontSize: 17,
         width: 40,
         alignSelf: 'center'
+    },
+    listHeader: {
+        justifyContent: 'space-between',
+        backgroundColor: 'lightyellow',
+        paddingHorizontal: 30
+    },
+    uv: {
+        fontSize: 20,
+        color: 'red'
     }
 })

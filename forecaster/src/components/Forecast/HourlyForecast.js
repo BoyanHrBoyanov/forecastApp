@@ -40,6 +40,7 @@ export const HourlyForecast = memo(function HourlyForecast({ langPicker }) {
                 {hourlyData
                     ? <HoursFlatList
                         langPicker={langPicker}
+                        dailyData={dailyData}
                         index={index}
                         data={data.slice(startEnd(index, 'start'), startEnd(index, 'end'))} />
                     : null}

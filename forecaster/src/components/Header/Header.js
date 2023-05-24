@@ -1,4 +1,4 @@
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { useNavigate, useLocation } from "react-router-native";
 
 import { FontAwesome } from '@expo/vector-icons';
@@ -20,9 +20,10 @@ export const Header = ({
 
     return (
         <>
+            <StatusBar />
             <View style={styles.header}>
                 {route().pathname === '/'
-                    ? <TouchableOpacity style={[styles.backButton, styles.button]} >
+                    ? <TouchableOpacity style={styles.button} >
                         <FontAwesome5 name={'smile'} size={22} />
                     </TouchableOpacity>
                     : <TouchableOpacity style={[styles.backButton, styles.button]} onPress={() => navigate(-1)}>
@@ -41,20 +42,13 @@ const styles = StyleSheet.create({
     header: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        paddingTop: 40,
-        // marginLeft: 20,
+        paddingTop: 10,
         backgroundColor: 'oldlace'
     },
     button: {
         backgroundColor: 'oldlace',
-        // alignSelf: 'flex-start',
-        // textAlign: 'center',
         paddingHorizontal: 10,
         paddingVertical: 10,
-    },
-    backButton: {
-        // width: 60,
-        // height: 50,
     },
     langButton: {
         alignSelf: 'flex-end',
